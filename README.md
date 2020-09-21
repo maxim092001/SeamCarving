@@ -16,20 +16,39 @@ Launch via CLI. Format: java Main -in {in} -out {out} -width {width} -height {he
 
 Examples
 ---
-* Input image (crop width 125, height 50)
+* **Input image (crop width 125, height 50)**
 
 ![Input image blue](https://github.com/maxim092001/SeamCarving/blob/master/resources/blue.png)
 
 
-* Output image
+* **Output image**
 
 ![Output image blue](https://github.com/maxim092001/SeamCarving/blob/master/resources/blue-reduced.png)
 
 
-* Input image (crop width 100, heigth 30)
+* **Input image (crop width 100, heigth 30)**
 
 ![Input image trees](https://github.com/maxim092001/SeamCarving/blob/master/resources/trees.png)
 
-* Output image
+* **Output image**
 
 ![Output image trees](https://github.com/maxim092001/SeamCarving/blob/master/resources/trees-reduced.png)
+
+
+Compression process
+---
+
+* Calculate the energy of all pixels.
+* Find the minimum energy path from top to bottom.
+* Remove seam.
+* Similarly, horizontally, paths are searched from left to right and the path is deleted.
+
+
+
+* **Energy**:
+
+![Energy](https://github.com/maxim092001/SeamCarving/blob/master/resources/blue-energy.png)
+
+* **Seam**:
+
+![Seam](https://github.com/maxim092001/SeamCarving/blob/master/resources/blue-seam.png)
