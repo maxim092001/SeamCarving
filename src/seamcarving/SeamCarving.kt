@@ -51,14 +51,14 @@ class SeamCarving {
         return resImage
     }
 
-    private fun getSeam(imageEnergySum: Array<Array<Double>>): Array<Int> {
-        val result = Array(imageEnergySum[0].size) { 0 }
-        val lastY = imageEnergySum[0].size - 1
-        var minEnergy = imageEnergySum[0][lastY]
+    private fun getSeam(energySum: Array<Array<Double>>): Array<Int> {
+        val result = Array(energySum[0].size) { 0 }
+        val lastY = energySum[0].size - 1
+        var minEnergy = energySum[0][lastY]
 
-        for (i in imageEnergySum.indices) {
-            if (imageEnergySum[i][lastY] < minEnergy) {
-                minEnergy = imageEnergySum[i][lastY]
+        for (i in energySum.indices) {
+            if (energySum[i][lastY] < minEnergy) {
+                minEnergy = energySum[i][lastY]
                 result[lastY] = i
             }
         }
@@ -66,8 +66,13 @@ class SeamCarving {
         for (yIndex in lastY - 1 downTo 0) {
             val prevXIndex = result[yIndex + 1]
             result[yIndex] = prevXIndex
-            if (prevXIndex > 0 && imageEnergySum[prevXIndex][yIndex] > imageEnergySum[prevXIndex - 1][yIndex]) result[yIndex] = prevXIndex - 1
-            if (prevXIndex < imageEnergySum.size - 1 && imageEnergySum[result[yIndex]][yIndex] > imageEnergySum[prevXIndex + 1][yIndex]) result[yIndex] = prevXIndex + 1
+            if (prevXIndex > 0 && energySum[prevXIndex][yIndex] > energySum[prevXIndex - 1][yIndex]) {
+                result[yIndex] = prevXIndex - 1
+            }
+            if (prevXIndex < energySum.size - 1 &&
+                    energySum[result[yIndex]][yIndex] > energySum[prevXIndex + 1][yIndex]) {
+                result[yIndex] = prevXIndex + 1
+            }
         }
         return result
     }
